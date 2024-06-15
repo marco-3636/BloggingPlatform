@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!--<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HomePage</title>
+</head>
+<body>
+    <h1>FUNGEEEEE</h1>
+
+</body>
+</html> -->
+
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Blogs</h1>
+    {% for blog in blogs reversed %}
+        <h2 class="ms-3"><a class="link-dark link-offset-2" href="/blogs/{{ blog.id }}">{{ blog.blog_title }}</a></h2>
+        <h5 class="ms-3 mb-3">by {{ blog.blog_author }}</h5>
+        {% for post in posts reversed %}
+            {% if post.post_blog == blog%}
+                <h4 class="ms-5"><a class="link-dark link-offset-2" href="/blogs/{{ blog.id }}/{{ post.id }}">{{ post.post_title }}</a></h4>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="d-flex align-items-center justify-content-between">
+            <h1>{{ post.post_title }}</h1>
+            <div>
+                {% if user %}
+                <a class="btn btn-danger" href="{% url 'blog_manager_post_delete' post.post_blog_id post.id%}">Delete Post</a>
+                <a class="btn btn-warning" href="{% url 'blog_manager_post_edit' post.post_blog_id post.id%}">Edit Post</a>
+                {% endif %}
+                <a class="btn btn-primary" href="{% url 'blog_manager_comment_create' post.post_blog_id post.id%}">New Comment</a>
+            </div>
+        </div>
+        <h5 class="mb-3">by {{ post.post_author }} on {{ post.post_date|date:'d/m/Y'}} at {{ post.post_date|date:'H:i'}}</h5>
+        <p class="mb-4">{{post.post_content}}</p>
+        <h3>Comments</h3>
+        {% for comment in comments reversed %}
+            <div class="d-flex align-items-center justify-content-between">
+                <p class="ms-3 mb-1 fw-bold">{{comment.comment_author}}    ({{ comment.comment_date|date:'d/m/Y H:i'}})</p>
+                {% if comment.comment_author == request.user %}
+                <a class="btn btn-danger btn-sm" href="{% url 'blog_manager_comment_delete' post.post_blog_id post.id comment.id %}">Delete comment</a>
+                {% endif %}
+            </div>
+            <p class="ms-5">{{comment.comment_content}}</p>
+        {% empty %}
+            <p class="ms-3">No comments yet.</p>
+        {% endfor %}
+    </div>
+{% endblock content %}

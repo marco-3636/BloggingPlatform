@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2>Edit Post</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="w-50 mb-3">
+                <label for="new_post_title" class="form-label">Post Title</label>
+                <input type="text" class="form-control" id="new_post_title" name="new_post_title" value="{{post.post_title}}" required>
+            </div>
+            <div class="w-50 mb-3">
+                <label for="new_post_content" class="form-label">Post Content</label>
+                <textarea class="form-control" id="new_post_content" name="new_post_content" rows="8" required>{{post.post_content}}</textarea>
+            </div>
+            {% if error_message %}
+                <div class="pb-3">{{error_message}}</div>
+            {% endif %}
+            <button type="submit" class="btn btn-primary">Edit</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2>New Comment on {{post.post_title}}</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="w-50 mb-3">
+                <label for="comment_content" class="form-label">Comment</label>
+                <textarea class="form-control" id="comment_content" name="comment_content" rows="8" autofocus required></textarea>
+            </div>
+            {% if error_message %}
+                <div class="pb-3">{{error_message}}</div>
+            {% endif %}
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+{% endblock %}

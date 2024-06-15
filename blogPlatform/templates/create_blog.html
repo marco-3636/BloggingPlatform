@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2>Create New Blog</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="w-25 mb-3">
+                <label for="blog_title" class="form-label">Blog Title</label>
+                <input type="text" class="form-control" id="blog_title" name="blog_title" autofocus required>
+            </div>
+            {% if error_message %}
+                <div class="pb-3">{{error_message}}</div>
+            {% endif %}
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+{% endblock %}

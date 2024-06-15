@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1 class="mb-5">Blogs</h1>
+    
+    {% for blog in blogs reversed%}
+        <h4 class="ms-3"><a class="link-dark link-offset-2" href="/blogs/{{ blog.id }}">{{ blog.blog_title }}</a></h4>
+    {% empty %}
+        <p class="ms-3">No blogs found.</p>
+    {% endfor %}
+{% endblock content %}

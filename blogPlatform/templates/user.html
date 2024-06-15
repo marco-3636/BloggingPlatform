@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h2>User Profile - {{ user.username }}</h2>
+        
+        <div class="mb-3">
+            <a class="btn btn-primary" href="{% url 'blog_manager_blog_create' %}">Create New Blog</a>
+        </div>
+        <h4 class="mb-4">My Blogs</h4>
+        {% for blog in blogs reversed%}
+            <h5><a class="link-dark link-offset-2" href="/blogs/{{ blog.id }}">{{ blog.blog_title }}</a></h5>
+        {% empty %}
+            <p>No blogs created yet.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

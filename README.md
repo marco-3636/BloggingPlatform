@@ -1,3 +1,3 @@
-# BloggingPlatform
+# Blogging Platform
 
-## Site
+## Sito

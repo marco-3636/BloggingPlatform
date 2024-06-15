@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="d-flex align-items-center justify-content-between">
+            <h1>{{ blog.blog_title }}</h1>
+            {% if user %}
+            <div>
+                <a class="btn btn-danger" href="{% url 'blog_manager_blog_delete' blog.id %}">Delete Blog</a>
+                <a class="btn btn-primary" href="{% url 'blog_manager_post_create' blog.id %}">New Post</a>
+            </div>
+            {% endif %}
+        </div>
+        <h5 class="mb-5">by {{ blog.blog_author }}</h5>
+        <h3>Posts</h3>
+        {% for post in posts reversed%}
+                <p><a class="link-dark link-offset-2" href="/blogs/{{ blog.id }}/{{post.id}}">{{ post.post_title }} ({{post.post_date|date:'d N Y H:i'}})</a></p>
+            {% empty %}
+                <p>No posts found.</p>
+            {% endfor %}
+    </div>
+{% endblock content %}
